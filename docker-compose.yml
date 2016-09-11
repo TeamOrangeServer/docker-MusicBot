@@ -2,3 +2,4 @@ musicbot:
     image: yongjhih/musicbot
     volumes:
         - ./config:/musicBot/config
+    restart: always
