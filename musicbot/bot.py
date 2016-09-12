@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import os
 import sys
 import time
@@ -33,6 +35,8 @@ from . import downloader
 from .opus_loader import load_opus_lib
 from .constants import VERSION as BOTVERSION
 from .constants import DISCORD_MSG_CHAR_LIMIT, AUDIO_CACHE_PATH
+from gettext import gettext as _
+#gettext.install('messages', 'i18n', unicode=True)
 
 
 load_opus_lib()
@@ -396,6 +400,7 @@ class MusicBot(discord.Client):
                 newmsg = '%s - your song **%s** is now playing in %s!' % (
                     entry.meta['author'].mention, entry.title, player.voice_client.channel.name)
             else:
+                #newmsg = '%s %s: **%s**' % (_('Now playing in'),
                 newmsg = 'Now playing in %s: **%s**' % (
                     player.voice_client.channel.name, entry.title)
 
@@ -467,7 +472,7 @@ class MusicBot(discord.Client):
         await self.change_status(game)
 
 
-    async def safe_send_message(self, dest, content, *, tts=False, expire_in=0, also_delete=None, quiet=False):
+    async def safe_send_message(self, dest, content, *, tts=True, expire_in=0, also_delete=None, quiet=False):
         msg = None
         try:
             msg = await self.send_message(dest, content, tts=tts)
