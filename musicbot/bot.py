@@ -472,7 +472,7 @@ class MusicBot(discord.Client):
         await self.change_status(game)
 
 
-    async def safe_send_message(self, dest, content, *, tts=True, expire_in=0, also_delete=None, quiet=False):
+    async def safe_send_message(self, dest, content, *, tts=False, expire_in=0, also_delete=None, quiet=False):
         msg = None
         try:
             msg = await self.send_message(dest, content, tts=tts)
